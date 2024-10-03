@@ -30,7 +30,7 @@ class LinkedList{
         Node *head;
         Node *tail;
     protected:
-        Node *searchNode(int);
+        Node *search(int target);
         bool isEmpty();
         void clearList();
     public:
@@ -52,6 +52,20 @@ LinkedList::LinkedList(){
 //********************************************************************************
 LinkedList::~LinkedList(){
     clearList();
+}
+//********************************************************************************
+Node* LinkedList::search(int target){
+    if(isEmpty())
+        return nullptr;
+
+    Node *currentNode = head;
+    while(currentNode != nullptr){
+        if(currentNode->id == target)
+            break;
+        currentNode = currentNode->next;
+    }
+
+    return currentNode;
 }
 //********************************************************************************
 bool LinkedList::isEmpty(){
