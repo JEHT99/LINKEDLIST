@@ -39,7 +39,7 @@ class LinkedList{
         bool addNew(string data);
         bool addNextTo(int target, string data);
         bool edit(int target, string data);
-        bool delete(int target);
+        bool erase(int target);
         void show();
 };
 //********************************************************************************
@@ -143,6 +143,43 @@ bool LinkedList::edit(int target, string data){
         return false;
 
     targetNode->data = data;
+    return true;
+}
+//********************************************************************************
+bool LinkedList::erase(int target){
+    Node *targetNode = search(target);
+
+    if(targetNode == nullptr)
+        return false;
+
+    // Unique node
+    if(targetNode == head && targetNode == tail){
+        head = nullptr;
+        tail = nullptr;
+        delete targetNode;
+        return true;
+    }
+
+    // It is the head
+    if(targetNode == head){
+        head = targetNode->next;
+        head->last = nullptr;
+        delete targetNode;
+        return true;
+    }
+
+    // It is the tail
+    if(targetNode == tail){
+        tail = targetNode->last;
+        tail->next = nullptr;
+        delete targetNode;
+        return true;
+    }
+
+    //Between two nodes
+    targetNode->last->next = targetNode->next;
+    targetNode->next->last = targetNode->last;
+    delete targetNode;
     return true;
 }
 //********************************************************************************
