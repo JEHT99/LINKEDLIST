@@ -136,3 +136,13 @@ bool LinkedList::addNextTo(int target, string data){
     return true;
 }
 //********************************************************************************
+bool LinkedList::edit(int target, string data){
+    Node *targetNode = search(target);
+    
+    if(targetNode == nullptr)
+        return false;
+
+    targetNode->data = data;
+    return true;
+}
+//********************************************************************************
