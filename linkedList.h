@@ -69,5 +69,12 @@ void LinkedList::clearList(){
     }
 }
 //********************************************************************************
+void LinkedList::show(){
+    Node *currentNode = head;
 
+    while(currentNode != nullptr){
+        cout<<currentNode->id<<" | "<<currentNode->data<<endl;
+        currentNode = currentNode->next;
+    }
+}
 //********************************************************************************
