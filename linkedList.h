@@ -92,3 +92,23 @@ void LinkedList::show(){
     }
 }
 //********************************************************************************
+bool LinkedList::addNew(string data){
+    Node *newNode = new Node(counter, data);
+
+    if(newNode == nullptr)
+        return false;
+
+    if(isEmpty()){
+        head = newNode;
+        tail = newNode;
+    }
+    else{
+        tail->next = newNode;
+        newNode->last = tail;
+        tail = newNode;
+    }
+
+    counter++;
+    return true;
+}
+//********************************************************************************
