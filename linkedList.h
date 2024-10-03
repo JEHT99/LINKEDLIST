@@ -54,5 +54,14 @@ bool LinkedList::isEmpty(){
     return (head == nullptr)?true:false;
 }
 //********************************************************************************
+void LinkedList::clearList(){
+    Node *currentNode = tail;
+    Node *lastNode = nullptr;
 
+    while(currentNode != nullptr){
+        lastNode = currentNode;
+        currentNode = currentNode->last;
+        delete lastNode;
+    }
+}
 //********************************************************************************
