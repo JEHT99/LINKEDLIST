@@ -8,8 +8,8 @@ class Node{
         string data;
         Node *next;
     public:
-        Node::Node(int, string);
-        Node::~Node();
+        Node(int, string);
+        ~Node();
         friend class LinkedList;
 };
 //********************************************************************************
