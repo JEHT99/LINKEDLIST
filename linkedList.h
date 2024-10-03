@@ -112,3 +112,27 @@ bool LinkedList::addNew(string data){
     return true;
 }
 //********************************************************************************
+bool LinkedList::addNextTo(int target, string data){
+    Node *newNode = new Node(counter, data);
+    Node *targetNode = search(target);
+
+    if(newNode == nullptr || targetNode == nullptr)
+        return false;
+
+
+    if(targetNode == tail){
+        targetNode->next = newNode;
+        newNode->last = targetNode;
+        tail = newNode;
+    }
+    else{
+        newNode->next = targetNode->next;
+        newNode->last = targetNode;
+        targetNode->next->last = newNode;
+        targetNode->next = newNode;
+    }
+
+    counter++;
+    return true;
+}
+//********************************************************************************
