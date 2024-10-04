@@ -1,62 +1,66 @@
-#include <string>
-using namespace std;
 //********************************************************************************
+//********************************************************************************
+template <class T>
+class LinkedList;
+
+template <class T>
 class Node{
     private:
-        Node *last;
+        Node<T> *last;
         int id;
-        string data;
-        Node *next;
+        T data;
+        Node<T> *next;
     public:
-        Node(int, string);
-        ~Node();
-        friend class LinkedList;
+        Node(int nodeId, T nodeData);
+        friend class LinkedList<T>;
 };
 //********************************************************************************
 //********************************************************************************
-Node::Node(int nodeId, string nodeData){
+template <class T>
+class LinkedList {
+    private:
+        int counter;
+        Node<T> *head;
+        Node<T> *tail; 
+    protected:
+        Node<T> *search(int target);
+        bool isEmpty();
+        void clearList();
+    public:
+        LinkedList();
+        LinkedList(const LinkedList<T> &);
+        ~LinkedList();
+        bool addNew(T data);
+        bool addNextTo(int target, T data);
+        bool edit(int target, T data);
+        bool erase(int target);
+        void show();
+};
+//********************************************************************************
+//********************************************************************************
+template <class T>
+Node<T>::Node(int nodeId, T nodeData){
     last = nullptr;
     id = nodeId;
     data = nodeData;
     next = nullptr;
 }
 //********************************************************************************
-Node::~Node(){}
 //********************************************************************************
-//********************************************************************************
-class LinkedList{
-    private:
-        int counter;
-        Node *head;
-        Node *tail;
-    protected:
-        Node *search(int target);
-        bool isEmpty();
-        void clearList();
-    public:
-        LinkedList();
-        LinkedList(const LinkedList &);
-        ~LinkedList();
-        bool addNew(string data);
-        bool addNextTo(int target, string data);
-        bool edit(int target, string data);
-        bool erase(int target);
-        void show();
-};
-//********************************************************************************
-//********************************************************************************
-LinkedList::LinkedList(){
+template <class T>
+LinkedList<T>::LinkedList(){
     counter = 0;
     head = nullptr;
     tail = nullptr;
 }
 //********************************************************************************
-LinkedList::LinkedList(const LinkedList &main){
+template <class T>
+LinkedList<T>::LinkedList(const LinkedList<T> &main){
     counter = 0;
     head = nullptr;
     tail = nullptr;
 
-    Node *currentNode = main.head;
+    Node<T> *currentNode = main.head;
     while(currentNode != nullptr){
         if(addNew(currentNode->data) == false){
             clearList();
@@ -66,15 +70,17 @@ LinkedList::LinkedList(const LinkedList &main){
     }
 }
 //********************************************************************************
-LinkedList::~LinkedList(){
+template <class T>
+LinkedList<T>::~LinkedList(){
     clearList();
 }
 //********************************************************************************
-Node* LinkedList::search(int target){
-    if(isEmpty())
+template <class T>
+Node<T>* LinkedList<T>::search(int target){ 
+    if (isEmpty())
         return nullptr;
 
-    Node *currentNode = head;
+    Node<T> *currentNode = head;
     while(currentNode != nullptr){
         if(currentNode->id == target)
             break;
@@ -84,13 +90,15 @@ Node* LinkedList::search(int target){
     return currentNode;
 }
 //********************************************************************************
-bool LinkedList::isEmpty(){
-    return (head == nullptr)?true:false;
+template <class T>
+bool LinkedList<T>::isEmpty(){
+    return(head == nullptr)?true:false;
 }
 //********************************************************************************
-void LinkedList::clearList(){
-    Node *currentNode = tail;
-    Node *lastNode = nullptr;
+template <class T>
+void LinkedList<T>::clearList(){
+    Node<T> *currentNode = tail;
+    Node<T> *lastNode = nullptr;
 
     while(currentNode != nullptr){
         lastNode = currentNode;
@@ -99,17 +107,19 @@ void LinkedList::clearList(){
     }
 }
 //********************************************************************************
-void LinkedList::show(){
-    Node *currentNode = head;
+template <class T>
+void LinkedList<T>::show(){
+    Node<T> *currentNode = head;
 
     while(currentNode != nullptr){
-        cout<<currentNode->id<<" | "<<currentNode->data<<endl;
+        std::cout<<currentNode->id<<" | "<<currentNode->data<<std::endl;
         currentNode = currentNode->next;
     }
 }
 //********************************************************************************
-bool LinkedList::addNew(string data){
-    Node *newNode = new Node(counter, data);
+template <class T>
+bool LinkedList<T>::addNew(T data){
+    Node<T> *newNode = new Node<T>(counter, data);
 
     if(newNode == nullptr)
         return false;
@@ -128,13 +138,13 @@ bool LinkedList::addNew(string data){
     return true;
 }
 //********************************************************************************
-bool LinkedList::addNextTo(int target, string data){
-    Node *newNode = new Node(counter, data);
-    Node *targetNode = search(target);
+template <class T>
+bool LinkedList<T>::addNextTo(int target, T data){
+    Node<T> *newNode = new Node<T>(counter, data);
+    Node<T> *targetNode = search(target);
 
     if(newNode == nullptr || targetNode == nullptr)
         return false;
-
 
     if(targetNode == tail){
         targetNode->next = newNode;
@@ -152,9 +162,10 @@ bool LinkedList::addNextTo(int target, string data){
     return true;
 }
 //********************************************************************************
-bool LinkedList::edit(int target, string data){
-    Node *targetNode = search(target);
-    
+template <class T>
+bool LinkedList<T>::edit(int target, T data){
+    Node<T> *targetNode = search(target);
+
     if(targetNode == nullptr)
         return false;
 
@@ -162,8 +173,9 @@ bool LinkedList::edit(int target, string data){
     return true;
 }
 //********************************************************************************
-bool LinkedList::erase(int target){
-    Node *targetNode = search(target);
+template <class T>
+bool LinkedList<T>::erase(int target) {
+    Node<T> *targetNode = search(target);
 
     if(targetNode == nullptr)
         return false;
