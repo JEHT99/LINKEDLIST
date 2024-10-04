@@ -35,6 +35,7 @@ class LinkedList{
         void clearList();
     public:
         LinkedList();
+        LinkedList(const LinkedList &);
         ~LinkedList();
         bool addNew(string data);
         bool addNextTo(int target, string data);
@@ -48,6 +49,21 @@ LinkedList::LinkedList(){
     counter = 0;
     head = nullptr;
     tail = nullptr;
+}
+//********************************************************************************
+LinkedList::LinkedList(const LinkedList &main){
+    counter = 0;
+    head = nullptr;
+    tail = nullptr;
+
+    Node *currentNode = main.head;
+    while(currentNode != nullptr){
+        if(addNew(currentNode->data) == false){
+            clearList();
+            break;
+        }
+        currentNode = currentNode->next;
+    }
 }
 //********************************************************************************
 LinkedList::~LinkedList(){
