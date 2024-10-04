@@ -1,31 +1,27 @@
 #include <iostream>
+#include <string>
 #include "linkedList.h"
 using namespace std;
 
 int main(){
-    LinkedList *myList = new LinkedList();
-    /*myList->addNew("HELLO");
-    myList->addNew("HELLO2");
-    myList->addNew("HELLO3");
-    myList->addNextTo(1,"HELLO 4");
-    myList->show();
-    cout<<endl;
-    myList->edit(0,"NOW IS HELLO 5");
-    myList->show();*/
+/*LinkedList<int> myList;
+myList.addNew(10);
+myList.addNew(20);
+myList.addNew(30);
+myList.addNextTo(1,40);
+myList.show();
 
-    myList->addNew("1");
-    myList->addNew("2");
-    myList->addNew("3");
-    myList->erase(1);
-    myList->addNextTo(1,"4");
-    myList->addNew("HELLO2");
-    myList->addNew("HELLO3");
-    myList->addNextTo(1,"HELLO 4");
-    //myList->addNew("2");
+cout<<endl;
+LinkedList<int> myList2 = LinkedList<int> (myList);
+myList2.show();*/
 
-    LinkedList *myList2 = new LinkedList(*myList);
-    myList->show();
-    cout<<endl;
-    myList2->show();
+/*LinkedList<string> myList;
+myList.addNew("HELLO");
+myList.show();*/
 
+LinkedList<float> myList;
+myList.addNew(40.25);
+myList.show();
+
+return 0;
 }
