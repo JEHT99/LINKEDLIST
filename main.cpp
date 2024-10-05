@@ -72,6 +72,25 @@ bool edit(LinkedList<std::string> &origin){
     return out;
 }
 //********************************************************************************
+bool erase(LinkedList<std::string> &origin){
+    system("clear");
+    bool out;
+    int realTarget;
+    std::string target;
+
+    while(true){
+        cout<<"\nType your target: ";
+        cin>>target;
+
+        realTarget = atoi(target.c_str());
+        if(realTarget != 0)
+            break;
+    }
+
+    out = origin.erase(realTarget);
+    return out;
+}
+//********************************************************************************
 int main(){
     // Set up
     LinkedList<std::string> myList;
@@ -96,6 +115,7 @@ int main(){
                 out = edit(myList);
                 break;
             case 4:
+                out = erase(myList);
                 break;
             case 5:
                 cout<<endl;
