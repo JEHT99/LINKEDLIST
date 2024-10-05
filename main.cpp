@@ -15,7 +15,7 @@ void options(){
     cout<<"6. Exit"<<endl;
 }
 //********************************************************************************
-bool add(LinkedList<std::string> &origin){
+void add(LinkedList<std::string> &origin){
     system("clear");
     bool out;
     std::string data;
@@ -23,10 +23,10 @@ bool add(LinkedList<std::string> &origin){
     cin>>data;
 
     out = origin.addNew(data);
-    return out;
+    (out)?cout<<"\nSuccess\n":cout<<"\nFailed\n";
 }
 //********************************************************************************
-bool addNextTo(LinkedList<std::string> &origin){
+void addNextTo(LinkedList<std::string> &origin){
     system("clear");
     bool out;
     int realTarget;
@@ -46,10 +46,10 @@ bool addNextTo(LinkedList<std::string> &origin){
     cin>>data;
 
     out = origin.addNextTo(realTarget, data);
-    return out;
+    (out)?cout<<"\nSuccess\n":cout<<"\nFailed\n";
 }
 //********************************************************************************
-bool edit(LinkedList<std::string> &origin){
+void edit(LinkedList<std::string> &origin){
     system("clear");
     bool out;
     int realTarget;
@@ -69,10 +69,10 @@ bool edit(LinkedList<std::string> &origin){
     cin>>data;
 
     out = origin.edit(realTarget, data);
-    return out;
+    (out)?cout<<"\nSuccess\n":cout<<"\nFailed\n";
 }
 //********************************************************************************
-bool erase(LinkedList<std::string> &origin){
+void erase(LinkedList<std::string> &origin){
     system("clear");
     bool out;
     int realTarget;
@@ -88,7 +88,7 @@ bool erase(LinkedList<std::string> &origin){
     }
 
     out = origin.erase(realTarget);
-    return out;
+    (out)?cout<<"\nSuccess\n":cout<<"\nFailed\n";
 }
 //********************************************************************************
 int main(){
@@ -96,7 +96,6 @@ int main(){
     LinkedList<std::string> myList;
     std::string option;
     bool stat = true;
-    bool out = true;
 
     // LinkedList class implementation
     while(stat){
@@ -106,16 +105,16 @@ int main(){
 
         switch(atoi(option.c_str())){
             case 1:
-                out = add(myList);
+                add(myList);
                 break;
             case 2:
-                out = addNextTo(myList);
+                addNextTo(myList);
                 break;
             case 3:
-                out = edit(myList);
+                edit(myList);
                 break;
             case 4:
-                out = erase(myList);
+                erase(myList);
                 break;
             case 5:
                 cout<<endl;
@@ -128,8 +127,7 @@ int main(){
                 break;
     }
     
-    (out)?cout<<"\nSuccess\n":cout<<"\nFailed\n";
-    //cout<<"\nPress Enter to continue...\n";
+    cout<<"\nPress Enter to continue...\n";
     cin.ignore();
     cin.get();
     }
