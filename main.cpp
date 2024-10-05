@@ -49,6 +49,29 @@ bool addNextTo(LinkedList<std::string> &origin){
     return out;
 }
 //********************************************************************************
+bool edit(LinkedList<std::string> &origin){
+    system("clear");
+    bool out;
+    int realTarget;
+    std::string target;
+    std::string data;
+
+    while(true){
+        cout<<"\nType your target: ";
+        cin>>target;
+
+        realTarget = atoi(target.c_str());
+        if(realTarget != 0)
+            break;
+    }
+    
+    cout<<"\nType your data: ";
+    cin>>data;
+
+    out = origin.edit(realTarget, data);
+    return out;
+}
+//********************************************************************************
 int main(){
     // Set up
     LinkedList<std::string> myList;
@@ -70,6 +93,7 @@ int main(){
                 out = addNextTo(myList);
                 break;
             case 3:
+                out = edit(myList);
                 break;
             case 4:
                 break;
