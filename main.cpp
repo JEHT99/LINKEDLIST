@@ -124,15 +124,15 @@ int main(){
                 stat = false;
                 break;
             default:
+                cout<<"\nBad input\n";
                 break;
     }
-    
     cout<<"\nPress Enter to continue...\n";
-    cin.ignore();
-    cin.get();
+    cin.ignore(10000,'\n');
+    getline(cin,option);
     }
-    
-return 0;
+
+    return 0;
 }
 //********************************************************************************
 //********************************************************************************
